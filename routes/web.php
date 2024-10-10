@@ -1,10 +1,28 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+
+
+!!  // route aanmaken met gebruik van controller
+Route ::get('/contact', [ContactController::class, 'show' ])->name('dodo');
+    // turn it into a named route
+
+
+
+
+
+// passeer parameters via de url
+Route::get('products/{id}', function(string $id){
+    return view('product-id', [
+        'id'=>$id,
+    ]);
 });
 
 Route::get('/dashboard', function () {
