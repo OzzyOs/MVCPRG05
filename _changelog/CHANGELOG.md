@@ -1,3 +1,9 @@
+# 14/10/2024 :
+![img.png](img.png)
+* ERD for the backend.
+* ![img_1.png](img_1.png)
+* Userstories, MoScoW method.
+
 # 10/10/2024 :
 * Yugioh TCG ?
 * Add ContactController
