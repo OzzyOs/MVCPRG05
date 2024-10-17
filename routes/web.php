@@ -3,6 +3,7 @@
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\TypeController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/home', function () {
@@ -35,6 +36,8 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('/cards', CardController::class);
+
+Route::resource('/types', TypeController::class);
 
 
 require __DIR__.'/auth.php';
