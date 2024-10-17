@@ -1,3 +1,8 @@
+# 17/10/2024
+* Add : POST route
+* Add : Title table
+* Add : Add POST into table
+
 # 15/10/2024
 * Add : Migrations
 * Add : Models
