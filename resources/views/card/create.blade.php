@@ -1,3 +1,4 @@
+<x-layout title="Create Card">
 @if (Route::has('login'))
 @auth
 <form method="POST" action="{{ route('cards.store') }}">
@@ -17,6 +18,7 @@
     <button type="submit">Create Card</button>
 </form>
 @else
-<p>Please <a href="{{ route('login') }}">log in</a> to create a card.</p>
+<p>You need to be <a href="{{ route('login') }}">logged in</a> to create a card.</p>
 @endauth
 @endif
+</x-layout>

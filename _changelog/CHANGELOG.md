@@ -1,3 +1,8 @@
+# 21/10/2024
+* Add : Comments
+* Add : Routes to middleware
+* Add : Code organisation
+
 # 17/10/2024
 * Add : POST route
 * Add : Title table
