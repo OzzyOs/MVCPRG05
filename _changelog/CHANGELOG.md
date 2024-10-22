@@ -2,6 +2,8 @@
 * Add : Comments
 * Add : Routes to middleware
 * Add : Code organisation
+* Add : Styling
+* Add : Middleware routes for authentication
 
 # 17/10/2024
 * Add : POST route
