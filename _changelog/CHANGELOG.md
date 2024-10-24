@@ -3,6 +3,8 @@
 * Add : Working custom nav
 * Add : Dynamic nav route login/logged out
 * Add : Missing files
+* Add : More styling
+* Add : Drop down for card type selection
 
 * Add : Styling layout
 * Add : Correct Data presentation

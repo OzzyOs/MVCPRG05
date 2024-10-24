@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    public function rating(): HasMany
+    public function rating(): BelongsTo
     {
         return $this->hasMany(Rating::class);
     }

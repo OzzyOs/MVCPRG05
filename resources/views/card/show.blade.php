@@ -1,16 +1,21 @@
 <x-layout>
-    <div>
-        <ul class="flex flex-col">
-            <li style="margin-bottom: 10px" > Card Name : {{ $card->name }}</li>
+    <div class="flex flex-col border rounded">
 
-            <li style="margin-bottom: 10px" > Card Description : {{ $card->description }}</li>
+        <div id="header" style="border-bottom-width: medium; justify-content: center" >
+           <p style="font-weight: bold; padding-left: 10px; padding-top: 5px; padding-bottom: 5px">{{ $card->name }}</p>
+        </div>
+
+        <div id="description" style="height:100px; border-width: medium; margin-top: 50px">
+            <p style="margin-bottom: 10px; font-weight: bold; margin-left: 5px; margin-right: 5px">{{ $card->description }}</p>
+        </div>
 
             <!-- Eerst haal je de 'type' table op, daarna haal je de gewenste column (type_id) -->
-            <li style="margin-bottom: 10px" > Card Type : {{ $card->type->type_id}}</li>
-        </ul>
+            <p style="font-weight: bold; margin-bottom: 10px">{{ $card->type->type_id}}</p>
 
-        <button class="border rounded">
-            <a href="{{ route('cards.index')}}" class="px-2"> Go Back </a>
-        </button>
+    </div>
+    <div>
+    <button class="border rounded">
+        <a href="{{ route('cards.index')}}" class="px-2"> Go Back </a>
+    </button>
     </div>
 </x-layout>
