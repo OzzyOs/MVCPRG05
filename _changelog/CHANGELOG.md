@@ -4,6 +4,9 @@
 * Add : Dynamic nav route login/logged out
 * Add : Missing files
 
+* Add : Styling layout
+* Add : Correct Data presentation
+
 # 21/10/2024
 * Add : Comments
 * Add : Routes to middleware
