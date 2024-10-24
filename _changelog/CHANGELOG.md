@@ -1,3 +1,9 @@
+# 24/10/2024
+* Add : Working Tailwind
+* Add : Working custom nav
+* Add : Dynamic nav route login/logged out
+* Add : Missing files
+
 # 21/10/2024
 * Add : Comments
 * Add : Routes to middleware
