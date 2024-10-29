@@ -36,6 +36,14 @@
                 <button type="submit" class="btn btn-primary" style="border-width: 1px; border-radius: 5px; padding-left: 5px; padding-right: 5px">Save</button>
                 <a href="/cards/{{$card->id}}"> Cancel </a>
             </form>
+
+            <button form="delete-form">Delete</button>
+
+            <form method="POST" action="/cards/{{$card -> id}}" id="delete-form">
+                @csrf
+                @method('DELETE')
+            </form>
+
         @else
             <p>You need to be <a href="{{ route('login') }}">logged in</a> to edit a card.</p>
         @endauth

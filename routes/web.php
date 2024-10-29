@@ -54,7 +54,7 @@ Route::middleware('auth')->group(function () {
     // Auth for cards
     Route::get('/cards/create',[CardController::class, 'create'])->name('card.create');
 
-
+    // Update
     Route::patch('/cards/{card}', function ($id) {
 
         request()->validate([
@@ -63,9 +63,9 @@ Route::middleware('auth')->group(function () {
             'type' => 'required',
         ]);
 
-        $card = Card::query()->findOrFail($id);
+        $card = Card::query()->findOrFail($id); //findOrFail try to find the id or else abort.
 
-        Card::query()->findOrFail($id)->update([ //findOrFail try to find the id or else abort.
+        $card->update([
             'name' => request('name'),
             'description' => request('description'),
             'type' => request('type'),
@@ -74,6 +74,14 @@ Route::middleware('auth')->group(function () {
         return redirect('/cards/'. $card-> id);
 
     });
+
+    // Delete
+    Route::delete('/cards/{card}', function ($id) {
+        Card::findOrFail($id)->delete();
+
+        return redirect('/cards');
+    });
+
     // Auth for types
     Route::resource('/types', TypeController::class);
 
