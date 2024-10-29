@@ -33,7 +33,9 @@ class CardController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(['name'=> 'required']);
+        if(Auth::guest()) {
+            return redirect('/login');
+        }
 
         $card = new Card();
         $card->name = $request->input('name');
@@ -66,6 +68,13 @@ class CardController extends Controller
     public function edit(string $id)
     {
         //
+        if(Auth::guest()) {
+            return redirect('/login');
+        }
+        // Find the card based on the selected id.
+
+        $card = Card::findOrFail($id);
+        return view('card.edit', compact('card'));
     }
 
     /**
@@ -81,6 +90,8 @@ class CardController extends Controller
      */
     public function destroy(string $id)
     {
-
+        if(Auth::guest()) {
+            return redirect('/login');
+        }
     }
 }

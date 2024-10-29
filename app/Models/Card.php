@@ -5,12 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Card extends Model
 {
+    protected $fillable =['name','description', 'type_id'];
+
     public function rating(): BelongsTo
     {
-        return $this->hasMany(Rating::class);
+        return $this->belongsTo(Rating::class);
     }
     public function type(): BelongsTo
     {

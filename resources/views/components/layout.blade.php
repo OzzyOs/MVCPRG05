@@ -21,7 +21,12 @@
         <li><a href="{{route('cards.index')}}"> Cards </a></li>
         @guest
             <li><a href="{{route('login')}}"> Login </a></li>
+
         @else
+        @if(auth()->user() && auth()->user()->isAdmin())
+        <!-- If you are an authenticated user AND the user has an admin role, give them this link. -->
+        <a href="{{ route('dashboard') }}">Admin Dashboard</a>
+        @endif
             <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

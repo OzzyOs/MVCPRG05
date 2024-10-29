@@ -9,7 +9,7 @@
 
     <p>Description</p>
     <label for="description"></label>
-    <input type="text" id="description" name="description" required>
+    <input type="text" id="description" name="description" r equired>
 
     <p style="padding-top: 15px">Card Type</p>
     <form action="{{ route('card.create') }}" method="POST">

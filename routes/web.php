@@ -4,6 +4,7 @@ use App\Http\Controllers\CardController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TypeController;
+use App\Models\Card;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,7 +24,7 @@ Route::get('/', function () {
 // General related routes
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -31,17 +32,14 @@ Route::get('/contact', function () {
 // End general related routes
 
 
-
-// Card related routes
+// All cards
 Route::get('/cards',[CardController::class, 'index'])->name('cards.index');
 Route::resource('/cards', CardController::class);
-// End card related routes
 
 
 
-// Types related routes
+// Types
 Route::resource('/types', TypeController::class);
-// End related routes
 
 
 
@@ -56,8 +54,32 @@ Route::middleware('auth')->group(function () {
     // Auth for cards
     Route::get('/cards/create',[CardController::class, 'create'])->name('card.create');
 
+
+    Route::patch('/cards/{card}', function ($id) {
+
+        request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'type' => 'required',
+        ]);
+
+        $card = Card::query()->findOrFail($id);
+
+        Card::query()->findOrFail($id)->update([ //findOrFail try to find the id or else abort.
+            'name' => request('name'),
+            'description' => request('description'),
+            'type' => request('type'),
+        ]);
+
+        return redirect('/cards/'. $card-> id);
+
+    });
     // Auth for types
     Route::resource('/types', TypeController::class);
+
 });
+
+
+
 
 require __DIR__.'/auth.php';
