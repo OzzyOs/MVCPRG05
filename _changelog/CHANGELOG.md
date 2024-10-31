@@ -1,6 +1,9 @@
 # 31/10/2024
 * Add : Model, View & Controller for Admin Role.
 * Cleaned up code
+* Add styling to admin homepage
+* Add authentication to admin homepage
+* 
 
 # 24/10/2024
 * Add : Working Tailwind

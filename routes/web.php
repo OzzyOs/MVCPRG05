@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CardController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TypeController;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\IsAdmin;
 
 
-Route::get('/', function () {
+Route::get('/home', function () {
     return view('welcome');
 }) ->name('home');
 
@@ -87,7 +88,8 @@ Route::middleware('auth')->group(function () {
 // If the user has an assigned amin role, give them access to the routes below
 Route::group(['middleware' => ['auth', 'admin']], function () {
 
-    Route::get('admin-home', [\App\Http\Controllers\IsAdminController::class, 'adminHome'])->name('admin.home');
+    Route::get('admin-home', [AdminController::class, 'adminHome'])->name('admin.home');
+
 });
 
 
