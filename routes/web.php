@@ -6,6 +6,8 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TypeController;
 use App\Models\Card;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\IsAdmin;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,29 +23,26 @@ Route::get('/', function () {
 //    ]);
 //});
 
-// General related routes
+
+// General
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
-
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
-// End general related routes
 
 
-// All cards
+// Cards
 Route::get('/cards',[CardController::class, 'index'])->name('cards.index');
 Route::resource('/cards', CardController::class);
-
 
 
 // Types
 Route::resource('/types', TypeController::class);
 
 
-
-// Everything in the 'auth group' needs authentication to access.
+// If the user has a registered account, give them access to the routes below
 Route::middleware('auth')->group(function () {
 
     // Auth for profiles
@@ -56,13 +55,11 @@ Route::middleware('auth')->group(function () {
 
     // Update
     Route::patch('/cards/{card}', function ($id) {
-
         request()->validate([
             'name' => 'required',
             'description' => 'required',
             'type' => 'required',
         ]);
-
         $card = Card::query()->findOrFail($id); //findOrFail try to find the id or else abort.
 
         $card->update([
@@ -85,6 +82,12 @@ Route::middleware('auth')->group(function () {
     // Auth for types
     Route::resource('/types', TypeController::class);
 
+});
+
+// If the user has an assigned amin role, give them access to the routes below
+Route::group(['middleware' => ['auth', 'admin']], function () {
+
+    Route::get('admin-home', [\App\Http\Controllers\IsAdminController::class, 'adminHome'])->name('admin.home');
 });
 
 

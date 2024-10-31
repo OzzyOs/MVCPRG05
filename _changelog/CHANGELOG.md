@@ -1,3 +1,7 @@
+# 31/10/2024
+* Add : Model, View & Controller for Admin Role.
+* Cleaned up code
+
 # 24/10/2024
 * Add : Working Tailwind
 * Add : Working custom nav

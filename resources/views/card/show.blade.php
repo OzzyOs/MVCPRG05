@@ -21,7 +21,12 @@
     </button>
     </div>
 
+    @if (Route::has('login'))
+        @auth
     <button>
        <a href="/cards/{{$card->id}}/edit"> Edit Card </a>
     </button>
+        @endauth
+    @endif
+
 </x-layout>
