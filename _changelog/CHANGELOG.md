@@ -3,7 +3,8 @@
 * Cleaned up code
 * Add styling to admin homepage
 * Add authentication to admin homepage
-* 
+* Cleaned up code, added comments.
+* Removed functions from routes.
 
 # 24/10/2024
 * Add : Working Tailwind

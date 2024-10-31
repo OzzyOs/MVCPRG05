@@ -55,30 +55,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/cards/create',[CardController::class, 'create'])->name('card.create');
 
     // Update
-    Route::patch('/cards/{card}', function ($id) {
-        request()->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'type' => 'required',
-        ]);
-        $card = Card::query()->findOrFail($id); //findOrFail try to find the id or else abort.
-
-        $card->update([
-            'name' => request('name'),
-            'description' => request('description'),
-            'type' => request('type'),
-        ]);
-
-        return redirect('/cards/'. $card-> id);
-
-    });
+    Route::patch('/cards/{card}', [CardController::class, 'update'])->name('card.update');
 
     // Delete
-    Route::delete('/cards/{card}', function ($id) {
-        Card::findOrFail($id)->delete();
-
-        return redirect('/cards');
-    });
+    Route::delete('/cards/{card}', [CardController::class, 'destroy'])->name('card.destroy');
 
     // Auth for types
     Route::resource('/types', TypeController::class);
