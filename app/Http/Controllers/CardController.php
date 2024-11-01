@@ -16,6 +16,7 @@ class CardController extends Controller
         // Search request
 
         $search = $request -> query('search');
+        $category = $request -> query('category');
 
         $request -> validate([
             'search'=> 'string|max: 100'
@@ -28,7 +29,12 @@ class CardController extends Controller
                 -> orWhereHas('type', function ($query) use ($search) {
                     return $query -> where('type_id', 'like', '%' . $search . '%');
                 });
+
+                }) -> when ($category, function ($query) use ($category) {
+            return $query -> where('type_id', $category);
+
         })->get();
+
 
 //        $cards = Card::all();
 

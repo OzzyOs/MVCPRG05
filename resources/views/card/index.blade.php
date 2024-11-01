@@ -8,6 +8,16 @@
             <input type="text" name="search" placeholder="Search a card" value="{{request('search')}}">
             <button type="submit">Search</button>
         </form>
+        <form action="{{ route('cards.index') }}" method="GET">
+            @csrf
+            <div>
+                <button type="submit" name="category" value="1">Monster</button>
+                <button type="submit" name="category" value="2">Magic</button>
+                <button type="submit" name="category" value="3">Trap</button>
+                <button type="submit" name="category" value="">All</button>
+            </div>
+        </form>
+
 
         <div class="flex flex-row gap-4 justify-center w-1/5 border">
                         @foreach($cards as $card)
