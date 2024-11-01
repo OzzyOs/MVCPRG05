@@ -45,7 +45,10 @@ class CardController extends Controller
     {
         // Show the creation form for a new card.
         $user = Auth::user();
-        if ($user && $user->login_count < 3) {
+
+        // If the user is authenticated && NOT an admin && the login_count is less than 3?
+        // Redirect the user back to the login screen.
+        if ($user && !$user->isAdmin() && $user->login_count < 3) {
             return redirect()->route('login')->with('error', 'You must have been logged in atleast 3 times to create a card.');
         }
 
@@ -59,9 +62,10 @@ class CardController extends Controller
             return redirect('/login');
         }
 
+        // If the user has been logged in 3 times, redirect the user back to the homepage.
         $user = Auth::user();
-        if ($user && $user->login_count < 3) {
-            return redirect('/home')->with('error, You must have been logged in atleast 3 times to create a card a card.');
+        if ($user && !$user->IsAdmin() && $user->login_count < 3) {
+            return redirect()->route('cards.index')->with('error, You must have been logged in atleast 3 times to create a card a card.');
         }
 
         // The required fields needed to create a card with the store function.

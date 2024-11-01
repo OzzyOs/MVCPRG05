@@ -11,21 +11,17 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
     public function create(): View
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
     public function store(LoginRequest $request): RedirectResponse
     {
+        // Autherize if email and password are correct.
         if(auth()->attempt($request->only('email', 'password'))){
 
+            // Add + 1 to the login_count everytime a user logs in.
             $user = auth()->user();
             $user->increment('login_count');
 

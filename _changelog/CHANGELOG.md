@@ -4,6 +4,7 @@
 * Added comments
 * Add filter by category
 * Add deeper validation, minimum requirements to create a card.
+* Implement Admin rights to avoid deeper validation for that specific role.
 
 # 31/10/2024
 * Add : Model, View & Controller for Admin Role.
