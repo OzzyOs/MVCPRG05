@@ -3,6 +3,7 @@
 * Cleaned up code 
 * Added comments
 * Add filter by category
+* Add deeper validation, minimum requirements to create a card.
 
 # 31/10/2024
 * Add : Model, View & Controller for Admin Role.

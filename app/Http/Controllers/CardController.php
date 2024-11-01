@@ -44,6 +44,11 @@ class CardController extends Controller
     public function create()
     {
         // Show the creation form for a new card.
+        $user = Auth::user();
+        if ($user && $user->login_count < 3) {
+            return redirect()->route('login')->with('error', 'You must have been logged in atleast 3 times to create a card.');
+        }
+
         return view('card.create');
     }
 
@@ -52,6 +57,11 @@ class CardController extends Controller
         // If the user is a guest (unregistered) redirect the use to the login screen.
         if(Auth::guest()) {
             return redirect('/login');
+        }
+
+        $user = Auth::user();
+        if ($user && $user->login_count < 3) {
+            return redirect('/home')->with('error, You must have been logged in atleast 3 times to create a card a card.');
         }
 
         // The required fields needed to create a card with the store function.
