@@ -3,6 +3,12 @@
 
         <h1 class="flex justify-center">Please click on a card to reveal it's secrets or create your own card!</h1>
 
+        <form action="{{route('cards.index')}}" method="GET">
+            @csrf
+            <input type="text" name="search" placeholder="Search a card" value="{{request('search')}}">
+            <button type="submit">Search</button>
+        </form>
+
         <div class="flex flex-row gap-4 justify-center w-1/5 border">
                         @foreach($cards as $card)
                             <div class=" flex-wrap mb-6 border justify-center w-1/2 overflow-hidden py-2 px-2">

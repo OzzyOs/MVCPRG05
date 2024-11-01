@@ -3,17 +3,13 @@
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ContactController;
 use App\Http\Controllers\TypeController;
-use App\Models\Card;
 use Illuminate\Support\Facades\Route;
-use App\Http\Middleware\IsAdmin;
 
 
 Route::get('/home', function () {
     return view('welcome');
 }) ->name('home');
-
 
 !!  // route aanmaken met gebruik van controller
 

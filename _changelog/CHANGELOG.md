@@ -1,3 +1,8 @@
+# 1/11/2024
+* Add search function by input
+* Cleaned up code 
+* Added comments
+
 # 31/10/2024
 * Add : Model, View & Controller for Admin Role.
 * Cleaned up code

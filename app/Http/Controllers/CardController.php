@@ -9,11 +9,29 @@ use Illuminate\Support\Facades\Auth;
 class CardController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
         // Show the index of the cards.
 
-        $cards = Card::all();
+        // Search request
+
+        $search = $request -> query('search');
+
+        $request -> validate([
+            'search'=> 'string|max: 100'
+        ]);
+
+        $cards = Card::when($search, function ($query, $search) {
+            return $query -> where('name', 'like', '%' . $search . '%')
+                -> orWhere('description', 'like', '%' . $search . '%')
+                -> orWhere('type_id', 'like', '%' . $search . '%')
+                -> orWhereHas('type', function ($query) use ($search) {
+                    return $query -> where('type_id', 'like', '%' . $search . '%');
+                });
+        })->get();
+
+//        $cards = Card::all();
+
         return view ('card.index', compact('cards'));
     }
 
