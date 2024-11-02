@@ -69,6 +69,7 @@ class CardController extends Controller
         }
 
         // The required fields needed to create a card with the store function.
+        // Each request looks at the input to the related 'key', provided in the 'card.create'.
         $card = new Card();
         $card->name = $request->input('name');
         $card->description = $request->input('description');
@@ -104,7 +105,7 @@ class CardController extends Controller
      */
     public function update(string $id)
     {
-        // Field validation
+        // Field validation for the update form
         request()->validate([
             'name' => 'required',
             'description' => 'required',
@@ -115,6 +116,8 @@ class CardController extends Controller
         $card = Card::query()->findOrFail($id);
 
         // Update following fields.
+        // Each request looks at the input to the related 'key', provided in the 'card.show'.
+
         $card->update([
             'name' => request('name'),
             'description' => request('description'),

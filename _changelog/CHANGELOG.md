@@ -1,3 +1,7 @@
+# 2/11/2024
+* Add more comments
+* Clean up more code
+
 # 1/11/2024
 * Add search function by input
 * Cleaned up code 

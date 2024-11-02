@@ -3,7 +3,7 @@
         @auth
             <form method="POST" action="{{ route('cards.update', $card->id) }}">
                 @csrf
-                @method('PATCH') <!-- Simulate PATCH request -->
+                @method('PATCH')
                 <header>Current card:  {{$card -> name}}</header>
 
                 <p>Name</p>

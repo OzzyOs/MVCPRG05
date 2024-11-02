@@ -17,12 +17,12 @@ class IsAdmin extends Controller
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // Checks if the user is logged in and if it has an 'admin' role assigned
+        // Checks if the user is logged in and if it has an 'admin' role assigned, then return the next request.
         if (Auth::user() && Auth::user()->role === 'admin') {
             return $next($request);
         }
 
         return redirect('home')->with('error', 'You do not have admin access.');
-        // It will redirect the user back to the home screen if they do not have the role of 'admin' assigned in the database
+        // It will redirect the user back to the home screen if they do not have the role of 'admin' assigned in the database.
     }
 }

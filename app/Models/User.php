@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
+    // Extend the isAdmin function ti the user.
     public function isAdmin()
     {
         return $this->role === 'admin';
