@@ -1,3 +1,7 @@
+# 3/11/2024
+* Add route redirection
+* Add card-authentication based on user-role
+
 # 2/11/2024
 * Add more comments
 * Clean up more code

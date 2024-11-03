@@ -22,7 +22,7 @@ class IsAdmin extends Controller
             return $next($request);
         }
 
-        return redirect('home')->with('error', 'You do not have admin access.');
+        return redirect()->route('home')->with('error', 'You do not have admin access.');
         // It will redirect the user back to the home screen if they do not have the role of 'admin' assigned in the database.
     }
 }

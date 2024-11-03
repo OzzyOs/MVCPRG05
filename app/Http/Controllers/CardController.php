@@ -59,7 +59,7 @@ class CardController extends Controller
     {
         // If the user is a guest (unregistered) redirect the use to the login screen.
         if(Auth::guest()) {
-            return redirect('/login');
+            return redirect()->route('/login');
         }
 
         // If the user has been logged in 3 times, redirect the user back to the homepage.
@@ -90,13 +90,17 @@ class CardController extends Controller
 
     public function edit(string $id)
     {
+        $card = Card::findOrFail($id);
         // If the user is a guest (unregistered) redirect the use to the login screen.
         if(Auth::guest()) {
-            return redirect('/login');
+            return redirect()->route('/login');
+        }
+
+        if(Auth::id() !== $card->user_id) {
+            return redirect()->route('cards.index')->with('error', 'You are not allowed to edit this card.');
         }
         // Find the card based on the selected 'id', if it can't find the card display an error
         // If it can find the 'id' open the edit page with the details that belong to that id.
-        $card = Card::findOrFail($id);
         return view('card.edit', compact('card'));
     }
 
@@ -106,7 +110,7 @@ class CardController extends Controller
     public function update(string $id)
     {
         // Field validation for the update form
-        request()->validate([
+        request() -> validate([
             'name' => 'required',
             'description' => 'required',
             'type' => 'required',
@@ -118,13 +122,13 @@ class CardController extends Controller
         // Update following fields.
         // Each request looks at the input to the related 'key', provided in the 'card.show'.
 
-        $card->update([
+        $card -> update([
             'name' => request('name'),
             'description' => request('description'),
             'type' => request('type'),
         ]);
 
-        return redirect('/cards/'. $card-> id);
+        return redirect()->route('cards.index')->with('success', 'Card updated successfully');
 
     }
 
@@ -138,6 +142,6 @@ class CardController extends Controller
         Card::findOrFail($id)->delete();
 
         // Redirect the user back to the card.index
-        return redirect('cards');
+        return redirect()->route('cards.index');
     }
 }
