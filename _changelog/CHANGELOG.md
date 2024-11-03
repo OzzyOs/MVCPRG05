@@ -6,6 +6,7 @@
 * Keep all cards visible in admin dashboard
 * Fix hide/show related bug allowing users to find `hidden` cards within a search query
 * Fix admin middle to not include as a controller
+* Fix code styling, empty spaces etc
 
 # 2/11/2024
 * Add more comments
