@@ -19,7 +19,7 @@ class CardController extends Controller
         $category = $request -> query('category');
 
         $request -> validate([
-            'search'=> 'string|max: 100'
+            'search'=> 'string'
         ]);
 
         $cards = Card::when($search, function ($query, $search) {
@@ -36,7 +36,7 @@ class CardController extends Controller
         })->get();
 
 
-//        $cards = Card::all();
+//      $cards = Card::all();
 
         return view ('card.index', compact('cards'));
     }

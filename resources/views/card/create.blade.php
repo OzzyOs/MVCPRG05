@@ -9,9 +9,10 @@
 
     <p>Description</p>
     <label for="description"></label>
-    <input type="text" id="description" name="description" r equired>
+    <input type="text" id="description" name="description" required>
 
     <p style="padding-top: 15px">Card Type</p>
+    <!-- HTML escaping, prevent certain characters from being recognized as special characters  -->
     <form action="{{ route('card.create') }}" method="POST">
         @csrf
         <div style="flex: 1; flex-direction: column;" >
