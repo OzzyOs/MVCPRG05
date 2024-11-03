@@ -136,7 +136,7 @@ class CardController extends Controller
         $card -> update([
             'name' => request('name'),
             'description' => request('description'),
-            'type' => request('type'),
+            'type_id' => request('type'),
         ]);
 
         return redirect()->route('cards.index')->with('success', 'Card updated successfully');
