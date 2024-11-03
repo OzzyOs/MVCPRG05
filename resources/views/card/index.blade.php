@@ -8,6 +8,7 @@
             <input type="text" name="search" placeholder="Search a card" value="{{request('search')}}">
             <button type="submit">Search</button>
         </form>
+
         <form action="{{ route('cards.index') }}" method="GET">
             @csrf
             <div>
