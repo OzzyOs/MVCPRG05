@@ -2,13 +2,12 @@
 
 namespace App\Http\Middleware;
 
-use App\Http\Controllers\Controller;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class IsAdmin extends Controller
+class IsAdmin
 {
     /**
      * Handle an incoming request.
