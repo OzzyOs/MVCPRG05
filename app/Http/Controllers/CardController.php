@@ -12,7 +12,6 @@ class CardController extends Controller
     public function index(Request $request)
     {
         // Show the index of the cards.
-
         // Search request
 
         $search = $request -> query('search');
@@ -32,8 +31,9 @@ class CardController extends Controller
 
                 }) -> when ($category, function ($query) use ($category) {
             return $query -> where('type_id', $category);
-
-        })->get();
+        })
+            ->where('status', 'true')
+            ->get();
 
 
 //      $cards = Card::all();
@@ -84,7 +84,11 @@ class CardController extends Controller
     public function show(string $id)
     {
         // Show the details on the card based on the id.
-        $card = Card::find($id);
+        $card = Card::where('id', $id)->where ('status', 'true')->first();
+
+        if(!$card) {
+            return redirect()->route('cards.index')->with('error', 'Card not found');
+        }
         return view('card.show', compact('card'));
     }
 
@@ -121,7 +125,6 @@ class CardController extends Controller
 
         // Update following fields.
         // Each request looks at the input to the related 'key', provided in the 'card.show'.
-
         $card -> update([
             'name' => request('name'),
             'description' => request('description'),
@@ -143,5 +146,18 @@ class CardController extends Controller
 
         // Redirect the user back to the card.index
         return redirect()->route('cards.index');
+    }
+
+    public function checkStatus(string $id)
+    {
+        // Find card by ID, if null, abort.
+        $card = Card::findOrFail($id);
+
+        // Check card status, if status equals true, then change to false
+        // If it equals to false, set it to true.
+        $card->status = $card -> status === 'true' ? 'false' : 'true';
+        $card->save();
+
+        return redirect()->route('admin.home')->with('success', 'Card updated successfully');
     }
 }

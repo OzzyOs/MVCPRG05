@@ -59,6 +59,8 @@ Route::middleware('auth')->group(function () {
     // Auth for types
     Route::resource('/types', TypeController::class);
 
+    // Auth for toggle
+    Route::post('/cards/{id}/check-status', [CardController::class, 'checkStatus'])->name('cards.checkStatus');
 });
 
 // If the user has an assigned amin role, give them access to the routes below

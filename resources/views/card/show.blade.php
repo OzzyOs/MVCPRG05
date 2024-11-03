@@ -21,14 +21,12 @@
     </button>
     </div>
 
-    @if (Route::has('login'))
-        @auth
+    @if (auth())
            @if(Auth::id() === $card->user_id)
     <button>
        <a href="/cards/{{$card->id}}/edit"> Edit Card </a>
     </button>
             @endif
-        @endauth
     @endif
 
 </x-layout>

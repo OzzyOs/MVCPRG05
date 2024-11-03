@@ -1,6 +1,9 @@
 # 3/11/2024
 * Add route redirection
 * Add card-authentication based on user-role
+* Add card toggle visible/invisible
+* Add toggle function to admin dashboard
+* Keep all cards visible in admin dashboard
 
 # 2/11/2024
 * Add more comments

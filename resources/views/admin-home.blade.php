@@ -7,6 +7,13 @@
 
         <p style="font-weight: bold">Current registered cards : </p>
             @foreach($cards as $card)
+            <form action="{{ route('cards.checkStatus', $card->id) }}" method="POST">
+                @csrf
+                <button type="submit">
+                    {{$card->status === 'true' ? 'Hide' : 'Show'}}
+                </button>
+            </form>
+
             <div class="flex flex-col">
                 Card name : {{$card -> name}}
                 Card type : {{$card -> type -> type_id}}
@@ -23,6 +30,7 @@
             {{$user -> name}}
             </div>
         @endforeach
+
 
 
     </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    protected $fillable =['name','description', 'type_id'];
+    protected $fillable =['name','description', 'type_id', 'status'];
 
     public function rating(): BelongsTo
     {
