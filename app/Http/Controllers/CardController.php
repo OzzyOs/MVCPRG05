@@ -12,7 +12,7 @@ class CardController extends Controller
     public function index(Request $request)
     {
         // Show the index of the cards.
-        // Search request
+        // Search request.
 
         $search = $request -> query('search');
         $category = $request -> query('category');
@@ -21,19 +21,31 @@ class CardController extends Controller
             'search'=> 'string'
         ]);
 
-        $cards = Card::when($search, function ($query, $search) {
-            return $query -> where('name', 'like', '%' . $search . '%')
-                -> orWhere('description', 'like', '%' . $search . '%')
-                -> orWhere('type_id', 'like', '%' . $search . '%')
-                -> orWhereHas('type', function ($query) use ($search) {
-                    return $query -> where('type_id', 'like', '%' . $search . '%');
-                });
-
-                }) -> when ($category, function ($query) use ($category) {
-            return $query -> where('type_id', $category);
-        })
+        $cards = Card::query()
+            // First check if card 'status' is set to 'true'.
             ->where('status', 'true')
+
+            // Initiate search/query from the search bar.
+            ->when($search, function ($query) use ($search) {
+
+                // Check conditions / function q takes
+                $query->where(function ($q) use ($search) {
+                    $q->where('name', 'like', '%' . $search . '%') // Specificy column, pattern match & wild card to match $search in de name column.
+                        ->orWhere('description', 'like', '%' . $search . '%') // If the previous condition is not met, initialize this one.
+                        ->orWhere('type_id', 'like', '%' . $search . '%')  // If the previous condition is not met, initialize this one.
+                        ->orWhereHas('type', function ($query) use ($search) { // Checks if the record exists in the 'type' relationship.
+                            $query->where('type_id', 'like', '%' . $search . '%'); // Adds another condition to the check if the type_id related to the $search string.
+                        });
+                });
+            })
+            // Category filter
+            ->when($category, function ($query) use ($category) {
+                return $query->where('type_id', $category);
+            })
             ->get();
+
+
+
 
 
 //      $cards = Card::all();

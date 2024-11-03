@@ -4,6 +4,7 @@
 * Add card toggle visible/invisible
 * Add toggle function to admin dashboard
 * Keep all cards visible in admin dashboard
+* Fix hide/show related bug allowing users to find `hidden` cards within a search query
 
 # 2/11/2024
 * Add more comments
